@@ -70,8 +70,15 @@ dependencies {
     // Spring Devtools
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.3'
-    testImplementation 'org.springframework.security:spring-security-test:5.5.1'
+    testImplementation('org.springframework.boot:spring-boot-starter-test:2.6.3') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+    testImplementation('org.springframework.security:spring-security-test:5.5.1') {
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+    }
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test:2.6.3'
+//    testImplementation 'org.springframework.security:spring-security-test:5.5.1'
+
     // OpenPojo
     testImplementation 'com.openpojo:openpojo:0.9.1'
 
