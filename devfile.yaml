@@ -39,6 +39,7 @@ components:
   - name: m2
     volume:
       size: 3Gi
+apiVersion: 1.0.0
 commands:
   - id: build
     exec:
@@ -61,3 +62,7 @@ commands:
       group:
         kind: debug
         isDefault: true
+  - id: redhat/java/latest
+    preferences:
+      java.jdt.ls.vmargs: '-javaagent:/lombok.jar'
+
