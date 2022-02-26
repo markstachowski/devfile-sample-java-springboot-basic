@@ -1,0 +1,176 @@
+/*
+ * Copyright (c) 2021 GlobalGiving Foundation - All rights reserved. Reviewed: Never
+ */
+
+/**
+ * Applies java conventions for GlobalGiving and some additional functionality.
+ *
+ * <h2>Production/Development resources</h2>
+ * <p>
+ *   When running a build you can pass the flag `-PuseProdResources` and
+ *   `gradle` will search in both `src/main/resources` and `src/prod/resources`
+ *   to locate properties, etc. If the same file exists in both places, the one from
+ *   `src/prod/resources` takes precedence.
+ * </p>
+ *
+ * <h2>Integration Tests</h2>
+ * <p>
+ *   <ul>
+ *     <li>
+ *       Adds an `integrationTest` target and source sets to enable integration tests
+ *       separate from unit tests. Files for integration tests should be in `src/test-integration/<java|groovy|whatever>`.
+ *     </li>
+ *     <li>
+ *       Adds the dependency scopes for `integrationTestImplementation`, `integrationTestRuntimeOnly`, etc. i.e. the dependency scopes
+ *       for integration tests are just like all the normal java ones, they are just prefixed with `integrationTest`.
+ *     </lI>
+ *     <li>
+ *       Adds basic string replacements utilities for `build.date` and `build.user`. Note that spring-boot has much richer
+ *       support for similar functionality and my hope is to switch to that in the future. For now, any files under
+ *       `src/with-replacements/resources` are processed.
+ *     </li>
+ *     <li>
+ *       adds jacoco plugin for coverage reports
+ *     <li>
+ *       The closure for doing the property replacements is added to the project as `propReplacements`
+ *     </li>
+ * </p>
+ *
+ */
+
+plugins {
+  id 'java'
+  id 'jacoco'
+  // id "com.github.spotbugs" version "5.0.0"
+  id 'gg.repos'
+}
+
+java {
+  toolchain {
+    languageVersion = JavaLanguageVersion.of(8)
+  }
+}
+
+// Code for parsing the `-PuseProdResources` flag.
+if (findProperty('useProdResources') != null) {
+  if (useProdResources != null) {
+    if (useProdResources.isEmpty()) {
+      useProdResources = true
+    } else {
+      useProdResources = useProdResources.toBoolean()
+    }
+  }
+} else {
+  ext.useProdResources = false
+}
+
+sourceSets {
+  // adding paths for integration tests
+  integrationTest {
+    java {
+      srcDirs = ['src/test-integration/java']
+    }
+    resources {
+      srcDirs = ['src/test-integration/resources']
+    }
+    // Allowing integration tests to include the compile/runtime classpaths of `main`.
+    // TODO: check if these are actually needed since the configurations below extend the `test` configuration
+    compileClasspath += sourceSets.main.output
+    runtimeClasspath += sourceSets.main.output
+    runtimeClasspath += sourceSets.integrationTest.resources
+  }
+
+  // Conditionally add prod/resources
+  if (useProdResources) {
+    main {
+      resources {
+        srcDirs += 'src/prod/resources'
+      }
+    }
+  }
+
+  // Adds source set for property replacements
+  withReplacements {
+    resources {
+        srcDirs = [ 'src/with-replacements/resources' ]
+      }
+    }
+}
+
+// adds configurations for dependency management
+configurations {
+  integrationTestImplementation.extendsFrom testImplementation
+  integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
+}
+
+// Adds the task `integrationTest`
+task integrationTest(type: Test) {
+  description = 'Runs integration tests.'
+  group = 'verification'
+
+  testClassesDirs = sourceSets.integrationTest.output.classesDirs
+  classpath = sourceSets.integrationTest.runtimeClasspath
+  shouldRunAfter test
+}
+
+// if/when we want to _always_ run integration tests, uncomment the following:
+// check.dependsOn integrationTest
+
+test {
+  useJUnitPlatform()
+  testLogging {
+      events "failed"
+  }
+
+  systemProperties = [
+    'junit.jupiter.execution.parallel.enabled': 'true',
+ 	 'junit.jupiter.execution.parallel.config.strategy': 'dynamic',
+    'junit.jupiter.execution.parallel.mode.default': 'concurrent',
+    'junit.jupiter.execution.parallel.mode.classes.default': 'concurrent',
+    'junit.jupiter.extensions.autodetection.enabled': 'true',
+    'junit.jupiter.execution.parallel.config.dynamic.factor': '1',
+  ]
+
+  // Allows the `test` to fork 2 VMs per project for running unit tests. Local testing hasn't shown much improvement for
+  // how long the tests take.
+  // The springConfigTest takes a while and could be run first or as a distinct test, but even without it, I'm not
+  // able to get better than 12-14 seconds to run tests. As our coverage grows, it may start to make sense to fork
+  // more VMs
+  maxParallelForks 2
+}
+
+// Defines simple property replacement function that can be
+// used to process our include files.
+import org.apache.tools.ant.filters.ReplaceTokens
+ext.propReplacement = {
+  filter(ReplaceTokens,
+      beginToken: "%%",
+      endToken: "%%",
+      tokens: [
+          'build.date': (new Date()).getDateTimeString(),
+          'build.user': System.env.USER
+      ]
+  )
+}
+
+// adds property replacements on _just_ the `withReplacements.resources`, i.e. `src/with-replacements/resources/**`
+processResources {
+  from(sourceSets.withReplacements.resources, propReplacement);
+}
+
+dependencies {
+  testImplementation(platform("org.junit:junit-bom:${versions.junit5}"))
+  testImplementation('org.junit.jupiter:junit-jupiter')
+  testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine')
+  testImplementation 'junit:junit:4.13.1'
+  testRuntimeOnly("org.junit.vintage:junit-vintage-engine") {
+    because("allows JUnit 4 tests to run under JUnit jupiter engine")
+  }
+  testImplementation('org.mockito:mockito-junit-jupiter:3.9.0')
+  testImplementation 'org.mockito:mockito-core:3.9.0'
+  testImplementation 'org.powermock:powermock-api-mockito2:2.0.9'
+  testImplementation 'org.powermock:powermock-module-junit4:2.0.9'
+  testImplementation 'org.assertj:assertj-core:3.12.2' 
+
+
+}

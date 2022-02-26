@@ -1,0 +1,24 @@
+
+class Slf4JAlignmentRule implements ComponentMetadataRule {
+  void execute(ComponentMetadataContext ctx) {
+    ctx.details.with {
+      if (id.group.startsWith("org.slf4j")) {
+        // force everything to the same slf4j version; there are 
+        // better ways if an actual BOM exists for the projec
+        belongsTo("org.slf4j:slf4j-virtual-platform:${id.version}")
+      }
+    }
+  }
+}
+
+dependencies {
+  configurations.all {
+    components.all(Slf4JAlignmentRule)
+  }
+
+  modules {
+    module('org.slf4j:jcl104-over-slf4j') {
+      replacedBy('org.slf4j:jcl-over-slf4j', 'old package was deprecated')
+    }
+  }
+}

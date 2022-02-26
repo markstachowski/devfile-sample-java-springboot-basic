@@ -1,0 +1,46 @@
+plugins {
+  id 'gg.versions'
+}
+
+repositories {
+  maven {
+    url "${nexusUrl}/repository/maven-public/"
+    credentials {
+      username = "${nexusReadUser}"
+      password = "${nexusReadPassword}"
+    }
+  }
+  ivy {
+    name 'legacy-mirror'
+    url "${rootProject.projectDir}/builder/repository/mirror/"
+    patternLayout {
+      artifact '[organisation]/[module]/[revision]/[artifact].[ext]'
+      ivy '[organisation]/[module]/[revision]/[artifact].[ext]'
+    }
+    metadataSources {
+      ivyDescriptor()
+      artifact()
+    }
+  }
+  ivy {
+    name 'legacy-fixed'
+    url "${rootProject.projectDir}/builder/repository/fixed/"
+    patternLayout {
+      artifact '[organisation]/[artifact].[ext]'
+      ivy '[organisation]/[artifact].[ext]'
+    }
+    metadataSources {
+      ivyDescriptor()
+      artifact()
+    }
+  }
+  mavenLocal()
+}
+
+configurations.all {
+  resolutionStrategy.dependencySubstitution {
+    // Struts2 uses an old version of javassist that is chokes on java8 classes.
+    substitute module('javassist:javassist:3.11.0.GA') with module('org.javassist:javassist:3.27.0-GA')
+  }
+
+}

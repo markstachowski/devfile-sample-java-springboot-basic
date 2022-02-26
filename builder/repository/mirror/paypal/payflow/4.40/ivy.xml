@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+   <info organisation="paypal" module="payflow" status="release" revision="4.40">
+      <description homepage="https://www.x.com/community/ppx/sdks#PayflowPro" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public" />
+   </configurations>
+
+   <publications>
+      <artifact name="payflow" type="jar" conf="default" />
+   </publications>
+
+   <dependencies>
+   </dependencies>
+</ivy-module>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" 
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+      xmlns:ivyde="http://ant.apache.org/ivy/ivyde/ns/">
+
+   <info organisation="io.opentracing" module="opentracing-noop" status="release" revision="0.33.0">
+      <description homepage="https://opentracing.io/" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public" />
+   </configurations>
+
+   <publications>
+      <artifact
+            name="opentracing-noop-0.33.0" type="jar" conf="default"
+            ivyde:source="opentracing-noop-0.33.0-sources"
+            ivyde:javadoc="opentracing-noop-0.33.0-javadoc" />
+      <artifact name="opentracing-noop-0.33.0-sources" ext="jar" type="source" />
+      <artifact name="opentracing-noop-0.33.0-javadoc" ext="jar" type="doc" />
+   </publications>
+
+   <dependencies>
+      <dependency org="io.opentracing" name="opentracing-api" rev="0.33.0" />
+   </dependencies>
+</ivy-module>

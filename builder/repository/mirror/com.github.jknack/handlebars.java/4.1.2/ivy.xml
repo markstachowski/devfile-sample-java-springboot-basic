@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+   <info organisation="com.github.jknack" module="handlebars.java" status="release" revision="4.1.2">
+      <description homepage="https://github.com/jknack/handlebars.java" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public" />
+   </configurations>
+
+   <publications>
+      <artifact name="handlebars-4.1.2" type="jar" conf="default" />
+      <artifact name="handlebars-4.1.2-javadoc" type="doc"    ext="jar" />
+      <artifact name="handlebars-4.1.2-sources" type="source" ext="jar" />
+   </publications>
+
+</ivy-module>

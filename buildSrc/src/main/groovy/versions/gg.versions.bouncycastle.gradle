@@ -1,0 +1,73 @@
+// Bouncy castle labels their jars wierd version 1.68 is labeld foo-168.
+// And there are versions in maven with both, e.g. `bouncycaste:foo:1.68` and
+// `bouncycastle:foo:168`. 
+// And there are both `org.bouncycastle` and `bouncycastle` groups.
+// I'm sure there is a better way to handle all this, but at the moment
+// the following code is just set up to detect the presence of conflicting
+// versions.
+class BouncyCastleRule implements ComponentMetadataRule {
+  void execute(ComponentMetadataContext ctx) {
+    ctx.details.with {
+      if (id.group == "bouncycastle" || id.group == "org.bouncycastle") {
+        // bouncycastle also has multiple variants for different JVMs and algorithms
+        // There is a better way to handle this in gradle, but for now, just fail the build
+        // if multiples are detected
+        def module
+        switch (id.name) {
+        case {it.startsWith('bcprov')}:
+          module = 'bcprov'
+          break
+        case {it.startsWith('bcmail')}:
+          module = 'bcmail'
+          break
+        case {it.startsWith('jce')}:
+          module = 'jce'
+          break
+        case {it.startsWith('bcpkix')}:
+          module = 'bcpkix'
+          break
+        case {it.startsWith('bcpg')}:
+          module = 'bcpg'
+          break
+        case {it.startsWith('bctls')}:
+          module = 'bctls'
+          break
+        case {it.startsWith('bctest')}:
+          module = 'bctest'
+          break
+        default:
+          module = 'unkonwn'
+        }
+        def version = id.version
+        // ugliness because some artifacts get published as version 1.68 and others as 168
+        def m = version =~ /(\d)(\d+)/ 
+        if (m) {
+          version = "${m.group(1)}.${m.group(2)}"
+        }
+        belongsTo("org.bouncycastle:bouncycastle-virtual-platform:${version}")
+        allVariants {
+          it.withCapabilities {
+            it.addCapability("org.bouncycastle", module, version)
+          }
+        }
+      }
+    }
+  }
+}
+
+dependencies {  
+  components.all(BouncyCastleRule)
+  configurations.all {
+    resolutionStrategy.capabilitiesResolution.withCapability("org.bouncycastle:bcprov") {
+      def toBeSelected = candidates.find {
+        it.id instanceof ModuleComponentIdentifier && 
+          it.id.group == 'org.bouncycastle' && 
+          it.id.module == 'bcprov-jdk15to18'
+      }
+      if (toBeSelected != null) {
+        select(toBeSelected)
+      }
+      because("latest bouncycastle for our jdk")
+    }
+  }
+}

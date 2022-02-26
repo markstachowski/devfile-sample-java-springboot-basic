@@ -1,0 +1,8 @@
+
+dependencies {
+  modules {
+    module('javax.servlet:servlet-api') {
+      replacedBy('javax.servlet:javax.servlet-api', 'aligning various versions of the servlet API')
+    }
+  }
+}

@@ -1,0 +1,53 @@
+class JavaXMailPlatformAlignmentRule implements ComponentMetadataRule {
+  void execute(ComponentMetadataContext ctx) {
+    ctx.details.with {
+      if (id.group == "com.sun.mail") {
+        // better ways if an actual BOM exists for the project
+        belongsTo("com.sun.mail:javax-mail-virtual-platform:${id.version}")
+      } else if (id.group == "org.apache.geronimo.specs" && id.name.startsWith("geronimo-javamail")) {
+        belongsTo("com.sun.mail:javax-mail-virtual-platform:0.0.1")
+      }
+    }
+  }
+}
+
+class JavaXMailApiCapability implements ComponentMetadataRule {
+  void execute(ComponentMetadataContext ctx) {
+    ctx.details.with {
+      if (id.group == "org.apache.geronimo.specs" && id.name.startsWith("geronimo-javamail")) {
+        allVariants {
+          it.withCapabilities {
+            // hack, but essential kicks geronimo out of the running
+            it.addCapability('com.sun.mail', 'javax.mail', id.version)
+          }
+        }
+      }
+    }
+  }
+}
+
+dependencies {
+  components.all(JavaXMailPlatformAlignmentRule)
+  components.all(JavaXMailApiCapability)
+  modules {
+    [ 'javax.mail:mail', 'com.sun:mail' ].each {
+      module(it) {
+        replacedBy('com.sun.mail:javax.mail', 'aligning various versions of the mail API')
+      }
+    }
+  }
+  configurations.all {
+    resolutionStrategy.capabilitiesResolution.withCapability("com.sun.mail:javax.mail") {
+      def toBeSelected = candidates.find {
+        it.id instanceof ModuleComponentIdentifier && 
+          it.id.group == 'com.sun.mail' && 
+          it.id.module == "javax.mail" 
+        }
+        if (toBeSelected != null) {
+          select(toBeSelected)
+        }
+        because("this seems the most 'official'")
+    }
+  }
+
+}

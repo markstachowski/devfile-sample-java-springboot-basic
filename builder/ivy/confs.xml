@@ -1,0 +1,5 @@
+<configurations defaultconfmapping="default->compile,runtime,master" > <!--  defaultconfmapping="*->@"  -->
+  <conf name="default" visibility="public"/>
+  <conf name="compileOnly" visibility="public"/>
+  <conf name="test" visibility="private"/>
+</configurations>

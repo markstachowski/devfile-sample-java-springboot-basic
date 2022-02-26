@@ -1,0 +1,25 @@
+plugins {
+  id 'gg.versions.asm'
+  id 'gg.versions.guava'
+  id 'gg.versions.javax-mail'
+  id 'gg.versions.jdom'
+  id 'gg.versions.slf4j'
+  id 'gg.versions.bouncycastle'
+  id 'gg.versions.servlet-api'
+}
+
+
+dependencies {
+  ext.versions = [
+      spring: '5.3.5',
+      springSecurity: '5.4.5',
+      struts: '2.3.35',
+      jackson: '2.6.6',
+      log4j: '1.2.17',
+      servletApi: '3.1.0',
+      lang3: '3.9',
+      ognl:  '3.0.21+',
+      slf4j: '1.7.30+',
+      junit5: '5.7.1',
+    ]
+}

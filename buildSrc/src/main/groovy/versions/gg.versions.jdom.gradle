@@ -1,0 +1,7 @@
+dependencies {
+  modules {
+    module('jdom:jdom') {
+      replacedBy('org.jdom:jdom', '')
+    }
+  }
+}

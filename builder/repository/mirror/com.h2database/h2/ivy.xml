@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+   <info organisation="com.h2database" module="h2" status="release" revision="latest">
+      <description homepage="https://h2database.com" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public"  />
+   </configurations>
+
+   <dependencies>
+      <dependency org="com.h2database" name="h2" rev="1.4.200"></dependency>
+   </dependencies>
+
+</ivy-module>

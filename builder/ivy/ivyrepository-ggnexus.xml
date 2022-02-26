@@ -1,0 +1,10 @@
+<ivysettings>
+
+   <credentials host="${nexusHost}" realm="Sonatype Nexus Repository Manager" username="${nexusReadUser}" passwd="${nexusReadPassword}"/>
+
+  <resolvers>
+      <ibiblio name="ggnexus-maven-public" m2compatible="true" root="https://${nexusHost}/repository/maven-public"/>
+  </resolvers>
+
+
+</ivysettings>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+   <info organisation="com.google.apis" module="google-api-services-analytics" status="release" revision="latest">
+      <description homepage="http://code.google.com/apis/analytics/docs/gdata/home.html" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public"  />
+   </configurations>
+
+   <dependencies>
+      <dependency org="com.google.apis" name="google-api-services-analytics" rev="v3-1.3.2-beta"></dependency>
+   </dependencies>
+
+</ivy-module>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+   <info organisation="com.googlecode" module="gmail4j" status="release" revision="latest">
+      <description homepage="http://spajus.github.io/gmail4j/" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public"  />
+   </configurations>
+
+   <dependencies>
+      <dependency org="com.googlecode" name="gmail4j" rev="0.5-SNAPSHOT"></dependency>
+   </dependencies>
+
+</ivy-module>

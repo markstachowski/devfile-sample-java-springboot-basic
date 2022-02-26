@@ -1,0 +1,14 @@
+<!--  This is a fixed repository that prevents Ivy from downloading many of the JARs from the internet. -->
+<ivysettings>
+   <property name="ivy.fixed.default.root" value="${ivy.settings.dir}/../repository/fixed" override="true" />
+   <property name="ivy.fixed.default.ivy.pattern" value="[organisation]/[artifact].[ext]" override="true" />
+   <property name="ivy.fixed.default.artifact.pattern" value="[organisation]/[artifact].[ext]" override="true" />
+
+   <resolvers>
+      <filesystem name="fixed">
+         <ivy pattern="${ivy.fixed.default.root}/${ivy.fixed.default.ivy.pattern}" />
+         <artifact pattern="${ivy.fixed.default.root}/${ivy.fixed.default.artifact.pattern}" />
+      </filesystem>
+   </resolvers>
+</ivysettings>
+

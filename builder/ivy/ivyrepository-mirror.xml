@@ -1,0 +1,14 @@
+<!--  This is a fixed repository that prevents Ivy from downloading many of the JARs from the internet. -->
+<ivysettings>
+   <property name="ivy.mirror.default.root" value="${ivy.settings.dir}/../repository/mirror" override="true" />
+   <property name="ivy.mirror.default.ivy.pattern" value="[organisation]/[module]/[revision]/[artifact].[ext]" override="true" />
+   <property name="ivy.mirror.default.artifact.pattern" value="[organisation]/[module]/[revision]/[artifact].[ext]" override="true" />
+
+   <resolvers>
+      <filesystem name="mirror" checkmodified="true">
+         <ivy pattern="${ivy.mirror.default.root}/${ivy.mirror.default.ivy.pattern}" />
+         <artifact pattern="${ivy.mirror.default.root}/${ivy.mirror.default.artifact.pattern}" />
+      </filesystem>
+   </resolvers>
+</ivysettings>
+

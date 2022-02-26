@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+      xmlns:ivyde="http://ant.apache.org/ivy/ivyde/ns/">
+   <info organisation="com.h2database" module="h2" status="release" revision="1.4.200">
+      <description homepage="h2database.com" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public"  />
+   </configurations>
+
+   <publications>
+      <artifact name="h2-1.4.200" type="jar" conf="default"
+         ivyde:source="h2-1.4.200-sources"
+         ivyde:javadoc="h2-1.4.200-javadoc" />
+      <artifact name="h2-1.4.200-sources" ext="jar" type="source" />
+      <artifact name="h2-1.4.200-javadoc" ext="jar" type="doc" />
+   </publications>
+
+</ivy-module>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+   <info organisation="org.apache.ibatis" module="ibatis" status="release" revision="2.3.5">
+      <description homepage="http://ibatis.apache.org/" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public" />
+   </configurations>
+
+   <publications>
+      <artifact name="ibatis-2.3.5" type="jar" conf="default" />
+   </publications>
+
+   <dependencies>
+      <dependency org="cglib" name="cglib" rev="3.2.4">
+         <exclude org="org.apache.ant"/>
+      </dependency>
+      
+      <!--dependency org="com.opensymphony" name="oscache" rev="latest.release"/-->
+   </dependencies>
+</ivy-module>

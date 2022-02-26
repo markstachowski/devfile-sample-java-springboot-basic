@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+   <!--  lib -->
+   <info organisation="org.globalgiving.lib" module="lib" status="release" revision="1.0" >
+      <description homepage="http://wwww.globalgiving.org" />
+   </info>
+
+   <publications>
+      <artifact name="contactlistimporter-1.3.1" type="jar" />
+      <artifact name="cos" type="jar" />
+      <artifact name="gekmllib" type="jar" />
+      <artifact name="gnu-regexp-1.1.4" type="jar" />
+      <artifact name="java-getopt-1.0.11" type="jar" />
+      <artifact name="jcommon-1.0.9" type="jar" />
+      <artifact name="jfreechart-1.0.5" type="jar" />
+      <artifact name="jmimemagic-0.1.0" type="jar" />
+      <artifact name="jra-1.0-alpha-4" type="jar" />
+      <artifact name="json.1.0" type="jar" />
+      <artifact name="recaptcha4j-0.0.7" type="jar" />
+      <artifact name="SuperCSV-1.02" type="jar" />
+   </publications>
+
+
+</ivy-module>

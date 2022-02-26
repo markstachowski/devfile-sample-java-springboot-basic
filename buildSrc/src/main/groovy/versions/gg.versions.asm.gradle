@@ -1,0 +1,23 @@
+class AsmRule implements ComponentMetadataRule {
+    void execute(ComponentMetadataContext ctx) {
+        ctx.details.with {
+            if (id.group == "asm" || id.group == "org.ow2.asm") {
+                belongsTo("${id.group}:asm-virtual-platform:${id.version}")
+            }
+        }
+    }
+}
+
+dependencies {
+    configurations.all {
+        components.all(AsmRule)
+    }
+    modules {
+        ['asm-commons', 'asm', 'asm-tree'].each { theMod ->
+            module("asm:${theMod}") {
+                replacedBy("org.ow2.asm:${theMod}")
+            }
+        }
+    }
+}
+

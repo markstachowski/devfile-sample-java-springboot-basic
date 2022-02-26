@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+   <info organisation="com.opensymphony" module="oscache" status="release" revision="2.4">
+      <description homepage="http://mvnrepository.com/artifact/opensymphony/oscache/2.4" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public" />
+   </configurations>
+
+   <publications>
+      <artifact name="oscache-2.4" type="jar" conf="default" />
+   </publications>
+</ivy-module>

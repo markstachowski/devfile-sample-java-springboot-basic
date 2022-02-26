@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd"
+      xmlns:ivyde="http://ant.apache.org/ivy/ivyde/ns/">
+
+   <info organisation="com.datadoghq" module="dd-trace-api" status="release" revision="0.65.0">
+      <description homepage="https://github.com/DataDog/dd-trace-java" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public"  />
+   </configurations>
+
+   <publications>
+      <artifact name="dd-trace-api-0.65.0" type="jar" conf="default"
+         ivyde:source="dd-trace-api-0.65.0-sources"
+         ivyde:javadoc="dd-trace-api-0.65.0-javadoc" />
+      <artifact name="dd-trace-api-0.65.0-sources" ext="jar" type="source" />
+      <artifact name="dd-trace-api-0.65.0-javadoc" ext="jar" type="doc" />
+   </publications>
+
+   <dependencies>
+      <dependency org="io.opentracing" name="opentracing-util" rev="0.33.0"></dependency>
+      <dependency org="io.opentracing" name="opentracing-noop" rev="0.33.0"></dependency>
+      <dependency org="io.opentracing" name="opentracing-api" rev="0.33.0"></dependency>
+   </dependencies>
+
+</ivy-module>

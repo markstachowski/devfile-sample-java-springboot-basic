@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+   <info organisation="com.cardinalcommerce" module="CentinelClient" status="release" revision="2.8">
+      <description homepage="http://www.cardinalcommerce.com/" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public" />
+   </configurations>
+
+   <publications>
+      <artifact name="CentinelClient-2.8" type="jar" conf="default" />
+   </publications>
+   
+   <dependencies>
+      <dependency org="xerces" name="xercesImpl" rev="2.12.0" conf="default->compile"/>
+   </dependencies>
+   
+</ivy-module>

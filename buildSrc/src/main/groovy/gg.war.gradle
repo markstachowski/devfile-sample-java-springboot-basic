@@ -1,0 +1,21 @@
+plugins {
+  id 'war'
+  id 'gg.java'
+}
+if (findProperty('explodeCore') != null) {
+  if (explodeCore != null) {
+    if (explodeCore.isEmpty()) {
+      explodeCore = true
+    } else {
+      explodeCore = explodeCore.toBoolean()
+    }
+  }
+} else {
+  ext.explodeCore = false
+}
+
+
+task explodedWar(type: Sync) {
+  into "${buildDir}/tmp/war/"
+  with war
+}

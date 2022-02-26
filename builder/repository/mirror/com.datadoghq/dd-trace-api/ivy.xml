@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ivy-module version="2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+   <info organisation="com.datadoghq" module="dd-trace-api" status="release" revision="latest">
+      <description homepage="https://github.com/DataDog/dd-trace-java" />
+   </info>
+
+   <configurations>
+      <conf name="default" visibility="public"  />
+   </configurations>
+
+   <dependencies>
+      <dependency org="com.datadoghq" name="dd-trace-api" rev="0.65.0"></dependency>
+   </dependencies>
+
+</ivy-module>

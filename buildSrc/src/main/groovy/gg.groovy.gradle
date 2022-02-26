@@ -1,0 +1,20 @@
+plugins {
+  id 'groovy'
+  // including gg.java since the baked in `groovy` plugin extends `java`
+  id 'gg.java'
+}
+
+sourceSets {
+  integrationTest {
+    groovy {
+      srcDirs = ['src/test-integration/groovy']
+    }
+    compileClasspath += sourceSets.main.output
+    runtimeClasspath += sourceSets.main.output
+  }
+}
+
+configurations {
+  integrationTestImplementation.extendsFrom testImplementation
+  integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
+}

@@ -1,0 +1,26 @@
+<ivysettings>
+   <properties environment="env"/>
+   <properties file="${env.HOME}/.gradle/gradle.properties"/>
+   <properties file="${ivy.default.ivy.user.dir}/.gradle/gradle.properties"/>
+   <properties file="${ivy.settings.dir}/gradle.properties"/>
+
+   <settings defaultResolver="globalgiving" circularDependencyStrategy="warn"/>
+   <include file="${ivy.settings.dir}/ivyrepository-mirror.xml" />
+   <include url="${ivy.default.settings.dir}/ivysettings-public.xml" />
+   <include url="${ivy.default.settings.dir}/ivysettings-shared.xml" />
+   <include url="${ivy.default.settings.dir}/ivysettings-local.xml"/>
+   <include file="${ivy.settings.dir}/ivyrepository-fixed.xml" />
+   <include file="${ivy.settings.dir}/ivyrepository-ggnexus.xml" />
+
+   <resolvers>
+      <chain name="globalgiving" returnFirst="true" checkmodified="true">
+         <resolver ref="local" />
+         <resolver ref="fixed" />
+          <resolver ref="mirror" />
+          <resolver ref="ggnexus-maven-public" />
+      </chain>
+   </resolvers>
+
+
+</ivysettings>
+
