@@ -1,2 +1,2 @@
-# Ignite POC for DevOps environments.
+# Ignite POC using CodeReady
 A demo application using Java Spring Boot with devfile
