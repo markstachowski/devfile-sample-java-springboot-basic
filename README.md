@@ -1,2 +1,2 @@
-# devfile-sample-java-springboot-basic
-A basic sample application using Java Spring Boot with devfile
+# Ignite POC
+A demo application using Java Spring Boot with devfile for Ignite's POC.
