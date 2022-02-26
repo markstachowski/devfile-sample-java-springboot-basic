@@ -1,0 +1,114 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.gg-action {
+  @extend .k-button;
+  background-color: #9EA518;
+  &:hover {
+    background: #9EA518;
+  }
+}
+
+.k-column-title {
+  min-width: 0;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+  flex-shrink: 1;
+  overflow: hidden;
+}
+
+.gg-notification-warning {
+    border-color: #F08B1E;
+    color: #000000;
+    background-color: #F08B1E;
+}
+.gg-notification-error {
+  border-color: #C44626;
+  color: #000000;
+  background-color: #C44626;
+}
+
+
+//combo box focus
+.k-dropdown .k-dropdown-wrap.k-state-focused, .k-dropdowntree .k-dropdown-wrap.k-state-focused {
+  box-shadow: 0 0 3px 3px #7D848A;
+}
+//Global Giving combobox input look
+.k-dropdown .k-dropdown-wrap {
+  color: #5b564c;
+  background-color: #ffffff;
+}
+.k-dropdown .k-dropdown-wrap:hover {
+  color: #5b564c;
+  background-color: #B7CAD8;
+}
+
+.k-combobox>.k-state-focused, .k-combobox.k-state-focus .k-dropdown-wrap {
+  //border-color: rgba(0, 0, 0, 0.16);
+  box-shadow: 0 0 3px 3px #7D848A;
+}
+// Toggle Switched
+.k-widget.k-switch.k-state-focused{
+  box-shadow: 0px 0px 3px 3px #7D848A;
+}
+// Date Range
+.k-input:focus{
+  box-shadow: 0px 0px 3px 3px #7D848A;
+}
+// button
+.k-button:focus{
+  box-shadow: 0px 0px 3px 3px #7D848A;
+}
+// primary button
+.k-button.k-button.k-primary:focus{
+  box-shadow: 0px 0px 3px 3px #7D848A;
+}
+//highlight filtered columnd
+th.k-header.active .k-grid-filter {
+  color: #EBEEEE;
+  background-color: #B7CAD8;
+}
+
+
+.gg-bold {
+  font-weight: bold !important;
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

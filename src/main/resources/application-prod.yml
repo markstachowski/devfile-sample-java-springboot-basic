@@ -1,0 +1,13 @@
+
+org.globalgiving.jwt:
+  loginPage: https://www.globalgiving.org/dy/v2/login/jwtRefresh?andThen=
+  publicKey: |
+    -----BEGIN PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwQE5l+BS/UKsOmvkcPVL
+    4DlkKEOPqrjIJ7WBND7PtZIA3wBW8NPOTGNQ9Y2lLn+lyY3aG1xXFv1CPA7oMwiQ
+    bD8gIdA/nErszg2Fzq91XQLb+kGiyQdQwmJwTobAWV52J97uDrCHwkq3TTRRx1sm
+    pGfZu/6gMIPO9jBCxA00I4kW7r63U1qWsR6u71SXYwxzZDhC7cSAuthwcYIVT3gZ
+    nhamIO/ehu2FnZtAs5hd0qdEigL9pCOc89zGCZB1BmHe6TBPWaYKaXhe+/EgnVX9
+    FRGLsqwlLSv8cARXncLv2PRD1zvH37vR73g1XNWP7AqHnX0V50JZSjQubE0W5Ul2
+    FQIDAQAB
+    -----END PUBLIC KEY-----

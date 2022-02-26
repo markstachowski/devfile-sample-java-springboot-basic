@@ -1,0 +1,67 @@
+
+$h4-margin: 2px;
+
+th.k-header.active > div > div {
+  color: #fff;
+  background-color: #3e80ed;
+}
+
+$grid-cell-padding-y: 2px;
+$grid-cell-padding-x: 4px;
+$enable-typography: true;
+$font-family: 'Open Sans  (700)';
+$font-size: 12px;
+$border-radius: 4px;
+$primary: #5d87a1;
+$secondary: #7d848a;
+$info: #80a1b6;
+$success: #b2bb1e;
+$warning: #fdce3e;
+$error: #c44626;
+$body-text: #5b564c;
+$body-bg: #ffffff;
+$headings-text: #3e3c39;
+$subtle-text: #867f75;
+$disabled-text: #c1bab0;
+$component-text: #5b564c;
+$component-bg: #ffffff;
+$base-text: #3e3c39;
+$base-bg: #ebeeee;
+$hovered-text: #3e3c39;
+$hovered-bg: #d4d88d;
+$selected-text: #ffffff;
+$selected-bg: #9ea518;
+$kendo-button-text: #fff;
+$kendo-button-bg: #457389;
+$kendo-picker-bg: #fff;
+$kendo-picker-text: #3e3c39;
+$kendo-picker-hover-bg: #fff;
+$kendo-input-text: #5b564c;
+$kendo-input-bg: #fff;
+
+
+
+$link-text: #457389;
+$link-hover-text: #4c2432;
+$series-a: #c44626;
+$series-b: #fdce3e;
+$series-c: #b2bb1e;
+$series-d: #80a1b6;
+$series-e: #457389;
+$series-f: #4c2432;
+
+@import "~@progress/kendo-theme-default/scss/typography/_index.scss";
+@import "~@progress/kendo-theme-default/scss/utils/_index.scss";
+@import "~@progress/kendo-theme-default/scss/button/_index.scss";
+@import "~@progress/kendo-theme-default/scss/datepicker/_index.scss";
+@import "~@progress/kendo-theme-default/scss/daterangepicker/_index.scss";
+@import "~@progress/kendo-theme-default/scss/dropdownlist/_index.scss";
+@import "~@progress/kendo-theme-default/scss/grid/_index.scss";
+@import "~@progress/kendo-theme-default/scss/forms/_index.scss";
+@import "~@progress/kendo-theme-default/scss/numerictextbox/_index.scss";
+@import "~@progress/kendo-theme-default/scss/switch/_index.scss";
+@import "~@progress/kendo-theme-default/scss/listbox/_index.scss";
+@import "~@progress/kendo-theme-default/scss/notification/_index.scss";
+@import "~@progress/kendo-theme-default/scss/tooltip/_index.scss";
+@import "~@progress/kendo-theme-default/scss/all.scss";
+@import "~@progress/kendo-theme-default/scss/loader/_index.scss";

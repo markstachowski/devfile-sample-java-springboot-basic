@@ -1,0 +1,30 @@
+node {
+    download = true
+
+    // Set the work directory for unpacking node
+    workDir = file("${project.buildDir}/nodejs")
+
+    // Set the work directory for NPM
+    npmWorkDir = file("${project.buildDir}/npm")
+}
+
+task appNpmInstall(type: NpmTask) {
+    description = "Installs all dependencies from package.json"
+    workingDir = file("${project.projectDir}/src/main/frontend")
+    args = ["install"]
+}
+
+task appNpmBuild(type: NpmTask) {
+    description = "Builds production version of the frontend"
+    workingDir = file("${project.projectDir}/src/main/frontend")
+    args = ["run", "build"]
+}
+
+task copyWebApp(type: Copy) {
+    from 'src/main/frontend/build'
+    into 'build/resources/main/public/.'
+}
+
+appNpmBuild.dependsOn appNpmInstall
+copyWebApp.dependsOn appNpmBuild
+compileJava.dependsOn copyWebApp

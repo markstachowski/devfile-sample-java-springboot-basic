@@ -57,6 +57,7 @@ dependencies {
     implementation group: 'com.datadoghq', name: 'dd-trace-api', version: '0.92.0'
 
     // Extra Dependencies
+    implementation 'ognl:ognl:3.3.2'
     implementation 'org.apache.commons:commons-lang3:3.12.0'
     implementation('org.apache.struts.xwork:xwork-core') {
         //FIXME not about nto needing this is in 2.5
@@ -65,7 +66,6 @@ dependencies {
             strictly '2.3.35'
         }
     }
-    implementation 'ognl:ognl:3.3.2'
 
     // Spring Devtools
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -137,8 +137,8 @@ dependencies {
 
 group = 'org.globalgiving.staffdashboard'
 version = '0.0.1-SNAPSHOT'
-description = 'demo'
-//java.sourceCompatibility = JavaVersion.VERSION_1_8
+description = 'ignitepoc'
+//java.sourceCompatibility = JavaVersion.VERSION_1_8 #Commented out because it is duplicated in buildSrc for now.
 
 publishing {
     publications {
@@ -153,9 +153,34 @@ tasks.withType(JavaCompile) {
 }
 
 bootBuildImage {
-    imageName "ignitepoc/demo:local"
+    imageName "globalgiving/staff-dashboard:local"
 }
 
 springBoot {
     buildInfo()
 }
+
+test {
+    finalizedBy jacocoTestReport
+
+    jacoco {
+        excludes = ['org.globalgiving.staffdashboard.config.*',
+                    'org.globalgiving.security.web.authentication.preauth.*',
+                    'org.globalgiving.config.security.web.authentication.preauth.*',]
+    }
+}
+
+jacocoTestReport {
+    dependsOn test
+
+    afterEvaluate {
+        getClassDirectories().setFrom(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: ['**/org/globalgiving/staffdashboard/config/**',
+                              '**/org/globalgiving/security/web/authentication/preauth/GgJwtAuthenticatedProcessingFilter.class',
+                              '**/org/globalgiving/config/security/web/authentication/preauth/GlobalGivingJwtPreAuthenticationProcessingFilterConfig.class'])
+        })
+    }
+}
+
+apply from: 'frontend.gradle'

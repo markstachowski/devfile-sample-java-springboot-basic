@@ -1,0 +1,43 @@
+server:
+  error:
+    include-stacktrace: never
+  servlet:
+    context-path: /staff-dashboard/
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  profiles:
+    active:
+
+management:
+  metrics:
+    export:
+      datadog:
+        enabled: false
+
+dd:
+  logs:
+    injection: 'true'
+  analytics_enabled: 'true'
+  runtime:
+    metrics:
+      enabled: 'true'
+  profiling:
+    enabled: 'false'
+  jmxfetch:
+    enabled: 'true'
+
+org.globalgiving.jwt:
+  cookieName: gg_jwt
+  loginPage: https://local.globalgiving.org/dy/v2/login/jwtRefresh?andThen=
+  publicKey: |
+    -----BEGIN PUBLIC KEY-----
+    MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnhkB3lcR/EaGZA3i73U/
+    w8SA2KKiBB2wSy2xJBF23mX5bWccbvcP1/THiHjD2z25vdYEsb6tObn5pYevfjYO
+    s9bbCfDxSKOvtRWO3sWbkt4i7Y5SoSBuBwAhOvrBc1Klnmp3+resZGSAsWKZtaJb
+    uqfWgw9uYCl/MEGOQ3QHdMhd93CjwyBJxv4goozpFXaUCnIZR7whIoD3aSgX1sF9
+    FSQ53cnhdYXc3vg97T1arWxTu9QG8bd4mR79OHtkRVk5JFbCqEV3zXl1uLvH4aBS
+    YqBEO/+f9qWjffWDuohn4QiDsp90Ay5fqWQwo5UQoI1ufvd4tDhaf9dD9/LoAkrP
+    BQIDAQAB
+    -----END PUBLIC KEY-----
