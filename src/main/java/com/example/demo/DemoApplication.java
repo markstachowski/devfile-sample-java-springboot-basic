@@ -1,6 +1,5 @@
 package com.example.demo;
 
-import lombok.Generated;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,7 @@ public class DemoApplication {
     return "Hello, IgnitePOC!";
   }
 
-  @Generated
+  /* @Generated */
   public static void main(String[] args) {
     SpringApplication.run(DemoApplication.class, args);
   }
